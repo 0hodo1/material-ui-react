@@ -1,9 +1,17 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Container,
   Button,
   ButtonGroup,
   makeStyles,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
 } from "@material-ui/core";
 import AppsIcon from "@material-ui/icons/Apps";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
@@ -21,10 +29,56 @@ const createStyles = makeStyles({
     textDecoration: "underline",
     fontSize: "2rem",
   },
+  field: {
+    marginTop: 20,
+    marginBottom: 20,
+    display: "block",
+  },
+  margin: {
+    marginTop: 20,
+  },
 });
 
 const Create = () => {
   const customClass = createStyles();
+
+  const [title, setTitle] = useState("");
+  const [details, setDetails] = useState("");
+  const [titleError, setTitleError] = useState(false);
+  const [detailsError, setDetailsError] = useState(false);
+
+  const [category, setCategory] = useState("onepiece");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(title);
+    console.log(details);
+    setTitleError(false);
+    setDetailsError(false);
+
+    if (title === "") {
+      setTitleError(true);
+    }
+    if (details === "") {
+      setDetailsError(true);
+    }
+    if (title && details) {
+      console.log(title, details, category);
+      fetch("http://localhost:8000/notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          details,
+          category,
+        }),
+      }).then(() => navigate("/"));
+    }
+  };
 
   return (
     <Container>
@@ -122,6 +176,100 @@ const Create = () => {
         >
           New Style Thema
         </Typography>
+      </Typography>
+
+      {/* TextField */}
+      <Typography gutterBottom>
+        <form>
+          <TextField
+            label="Not Giriniz"
+            variant="standard"
+            required
+            fullWidth
+          />
+          <TextField
+            label="Not Giriniz"
+            variant="outlined"
+            className={customClass.field}
+          />
+          <TextField label="Not Giriniz" variant="filled" />
+          <TextField
+            label="Not Giriniz"
+            variant="filled"
+            multiline
+            className={customClass.field}
+            fullWidth
+            maxRows={4}
+            minRows={2}
+          />
+        </form>
+      </Typography>
+
+      {/* Created Form */}
+      <Typography gutterBottom>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <TextField
+            onChange={(e) => setTitle(e.target.value)}
+            className={customClass.margin}
+            label="Title"
+            fullWidth
+            error={titleError}
+          />
+          <br />
+          <TextField
+            onChange={(e) => setDetails(e.target.value)}
+            className={customClass.margin}
+            label="Details"
+            fullWidth
+            error={detailsError}
+          />
+          <br />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={customClass.margin}
+          >
+            Submit
+          </Button>
+        </form>
+      </Typography>
+
+      {/* RadioGroup */}
+      <Typography gutterBottom>
+        <FormControl className={customClass.field}>
+          <FormLabel>Note Categories</FormLabel>
+          <RadioGroup
+            value={category}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+          >
+            <FormControlLabel
+              value="onepiece"
+              control={<Radio />}
+              label="One Piece"
+            />
+            <FormControlLabel
+              value="deathnote"
+              control={<Radio />}
+              label="Death Note"
+            />
+            <FormControlLabel
+              value="bleach"
+              control={<Radio />}
+              label="Bleach"
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={customClass.margin}
+            >
+              Select
+            </Button>
+          </RadioGroup>
+        </FormControl>
       </Typography>
     </Container>
   );
