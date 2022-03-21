@@ -76,14 +76,14 @@ const Create = () => {
           details,
           category,
         }),
-      }).then(() => navigate("/"));
+      }).then(() => navigate("/newpage"));
     }
   };
 
   return (
     <Container>
       {/* Paragraph */}
-      <Typography>
+      {/* <Typography>
         <Typography variant="h3" color="textSecondary" align="center">
           Create a new note
         </Typography>
@@ -106,10 +106,10 @@ const Create = () => {
           excepteur dolore. Laboris minim irure Lorem officia quis dolore
           commodo est. Consequat commodo dolore velit nostrud.
         </Typography>
-      </Typography>
+      </Typography> */}
 
       {/* Button */}
-      <Typography gutterBottom>
+      {/* <Typography gutterBottom>
         <Typography gutterBottom>
           <Button variant="outlined">Send</Button>
           <Button variant="outlined" color="primary">
@@ -141,10 +141,10 @@ const Create = () => {
             Click
           </Button>
         </Typography>
-      </Typography>
+      </Typography> */}
 
       {/* Icon */}
-      <Typography gutterBottom>
+      {/* <Typography gutterBottom>
         <AppsIcon color="primary" />
         <AppsIcon color="secondary" />
         <AppsIcon color="" fontSize="large" />
@@ -156,18 +156,18 @@ const Create = () => {
         >
           Notify Me
         </Button>
-      </Typography>
+      </Typography> */}
 
       {/* Custom Style */}
-      <Typography gutterBottom>
+      {/* <Typography gutterBottom>
         <Button className={customClass.btn}>Custom Style</Button>
         <Typography variant="h2" className={customClass.title} align="center">
           New Style This Title
         </Typography>
-      </Typography>
+      </Typography> */}
 
       {/* Cutom Theme */}
-      <Typography gutterBottom>
+      {/* <Typography gutterBottom>
         <Typography
           variant="h2"
           color="secondary"
@@ -176,10 +176,10 @@ const Create = () => {
         >
           New Style Thema
         </Typography>
-      </Typography>
+      </Typography> */}
 
       {/* TextField */}
-      <Typography gutterBottom>
+      {/* <Typography gutterBottom>
         <form>
           <TextField
             label="Not Giriniz"
@@ -203,7 +203,7 @@ const Create = () => {
             minRows={2}
           />
         </form>
-      </Typography>
+      </Typography> */}
 
       {/* Created Form */}
       <Typography gutterBottom>

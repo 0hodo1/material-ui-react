@@ -4,6 +4,8 @@ import { cyan } from "@material-ui/core/colors";
 
 import Notes from "./pages/Notes.js";
 import Create from "./pages/Create.js";
+import NewNotesPage from "./pages/NewNotesPage.js";
+import Layout from "./components/Layout.js";
 
 // Theme Generate
 const theme = createTheme({
@@ -26,10 +28,13 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Notes />} />
-          <Route path="create" element={<Create />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Notes />} />
+            <Route path="create" element={<Create />} />
+            <Route path="newpage" element={<NewNotesPage />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </ThemeProvider>
   );
